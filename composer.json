@@ -1,0 +1,50 @@
+{
+    "name": "zendtech/polyfill-mb-ereg",
+    "description": "Polyfill for mb_ereg(), mb_eregi(), mb_ereg_match(), and mb_ereg_replace*() functions; primary use case is for mbstring on Windows 7.4+",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "mbstring",
+        "polyfill",
+        "zend"
+    ],
+    "homepage": "https://github.com/zendtech/polyfill-mb-ereg",
+    "support": {
+        "issues": "https://github.com/zend-tech/polyfill-mb-ereg/issues",
+        "source": "https://github.com/zend-tech/polyfill-mb-ereg",
+        "rss": "https://github.com/zend-tech/polyfill-mb-ereg/releases.atom"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "^5.6 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+        "ext-mbstring": "*",
+        "laminas/laminas-coding-standard": "~2.3.0",
+        "phpunit/phpunit": "^9.3"
+    },
+    "autoload": {
+        "files": [
+            "src/autoload.php"
+        ],
+        "psr-4": {
+            "ZendTech\\Polyfill\\MbEreg\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ZendTechTest\\Polyfill\\MbEreg\\": "test/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    }
+}
