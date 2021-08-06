@@ -1,18 +1,24 @@
 <?php
 
-declare(strict_types=1);
-
 namespace ZendTech\Polyfill\MbEreg;
 
 use InvalidArgumentException;
 
+use function count;
+use function get_class;
+use function gettype;
+use function is_int;
+use function is_numeric;
+use function is_object;
+use function is_string;
 use function preg_last_error;
 use function preg_match;
 use function preg_replace;
 use function preg_replace_callback;
+use function sprintf;
+use function str_replace;
 use function strlen;
 use function strpos;
-use function str_replace;
 
 final class MbEreg
 {
@@ -196,7 +202,7 @@ final class MbEreg
             throw new InvalidArgumentException('Argument #1 ($pattern) must not be empty');
         }
 
-        $flags   = self::preparePcreFlags($isCaseInsensitive, $options);
+        $flags = self::preparePcreFlags($isCaseInsensitive, $options);
         return '/' . str_replace('/', '\\/', $pattern) . '/' . $flags;
     }
 

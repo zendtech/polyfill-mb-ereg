@@ -1,9 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ZendTechTest\Polyfill\MbEreg;
 
 use PHPUnit\Framework\TestCase;
 use ZendTech\Polyfill\MbEreg\MbEreg;
+
+use function function_exists;
+use function mb_ereg_replace_callback;
+use function sprintf;
+use function strlen;
 
 class MbEregReplaceCallbackTest extends TestCase
 {
@@ -25,15 +32,15 @@ class MbEregReplaceCallbackTest extends TestCase
                 function (array $m): string {
                     return $m[1] . '(' . strlen($m[1]) . ')';
                 },
-                $string
+                $string,
             ],
-            'named matches' => [
+            'named matches'   => [
                 '123-abc',
                 '(?<word>\w+) (?<digit>\d+).*',
                 function (array $m): string {
                     return sprintf('%s-%s', $m['digit'], $m['word']);
                 },
-                $string
+                $string,
             ],
         ];
     }

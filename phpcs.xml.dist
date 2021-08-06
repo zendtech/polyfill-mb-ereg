@@ -19,7 +19,50 @@
     <!-- Include all rules from Laminas Coding Standard -->
     <rule ref="LaminasCodingStandard"/>
 
+    <!-- Run against the PHPCompatibility ruleset -->
+    <rule ref="PHPCompatibility"/>
+    <config name="testVersion" value="5.6-"/>
+
+	<!-- Omit checks for constant visibility, as 5.6 does not support it -->
     <rule ref="PSR12.Properties.ConstantVisibility.NotFound">
         <exclude-pattern>src/MbEreg\.php</exclude-pattern>
     </rule>
+
+	<!-- Omit checks for declare_strict, as 5.6 does not support it -->
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing">
+        <exclude-pattern>src/*\.php</exclude-pattern>
+    </rule>
+
+	<!-- Omit phpcompat checks against test suite; suite runs on 7.3+ -->
+	<rule ref="PHPCompatibility.Classes.NewAnonymousClasses.Found">
+		<exclude-pattern>test/*Test.php</exclude-pattern>
+	</rule>
+
+	<rule ref="PHPCompatibility.ControlStructures.NewExecutionDirectives.strict_typesFound">
+		<exclude-pattern>test/*Test.php</exclude-pattern>
+	</rule>
+
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewNullableTypes.typeDeclarationFound">
+		<exclude-pattern>test/*Test.php</exclude-pattern>
+	</rule>
+
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.stringFound">
+		<exclude-pattern>test/*Test.php</exclude-pattern>
+	</rule>
+
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.arrayFound">
+		<exclude-pattern>test/*Test.php</exclude-pattern>
+	</rule>
+
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.stringFound">
+		<exclude-pattern>test/*Test.php</exclude-pattern>
+	</rule>
+
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.voidFound">
+		<exclude-pattern>test/*Test.php</exclude-pattern>
+	</rule>
+
+	<rule ref="PHPCompatibility.FunctionUse.RemovedFunctions.mberegDeprecated">
+		<exclude-pattern>test/*Test.php</exclude-pattern>
+	</rule>
 </ruleset>

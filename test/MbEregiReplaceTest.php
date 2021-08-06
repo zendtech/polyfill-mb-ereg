@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ZendTechTest\Polyfill\MbEreg;
 
 use PHPUnit\Framework\TestCase;
 use ZendTech\Polyfill\MbEreg\MbEreg;
+
+use function function_exists;
 
 class MbEregiReplaceTest extends TestCase
 {

@@ -1,10 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ZendTechTest\Polyfill\MbEreg;
 
 use PHPUnit\Framework\TestCase;
 use Throwable;
 use ZendTech\Polyfill\MbEreg\MbEreg;
+
+use function base64_decode;
+use function function_exists;
+use function mb_ereg;
+use function sprintf;
 
 class MbEregTest extends TestCase
 {
@@ -61,10 +68,10 @@ class MbEregTest extends TestCase
         ];
         $matchesMb2 = [];
 
-        $stringMbCapture1 = '  中国';
-        $stringMbCapture2 = '国';
-        $regexMbCapture1  = '(?<wsp>\s*)(?<word>\w+)';
-        $regexMbCapture2  = '(\s*)(?<word>\w+)';
+        $stringMbCapture1  = '  中国';
+        $stringMbCapture2  = '国';
+        $regexMbCapture1   = '(?<wsp>\s*)(?<word>\w+)';
+        $regexMbCapture2   = '(\s*)(?<word>\w+)';
         $matchesMbCapture1 = [
             0      => '  中国',
             1      => '  ',
@@ -111,7 +118,7 @@ class MbEregTest extends TestCase
      * @param scalar $string
      * @param mixed $matches
      */
-    public function testMatchResults($pattern, $string, $matches = null, array $expectedMatches = null)
+    public function testMatchResults($pattern, $string, $matches = null, ?array $expectedMatches = null)
     {
         if ($matches === null) {
             $this->assertSame(

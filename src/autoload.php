@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use ZendTech\Polyfill\MbEreg as p;
 
 if (! function_exists('mb_ereg')) {
@@ -10,9 +8,10 @@ if (! function_exists('mb_ereg')) {
      *
      * @param string $pattern
      * @param string $string
+     * @param null|array $matches
      * @return bool
      */
-    function mb_ereg($pattern, $string, ?array &$matches = null)
+    function mb_ereg($pattern, $string, &$matches = null)
     {
         return p\MbEreg::match($pattern, $string, null, false, $matches);
     }
@@ -24,9 +23,10 @@ if (! function_exists('mb_eregi')) {
      *
      * @param string $pattern
      * @param string $string
+     * @param null|array $matches
      * @return bool
      */
-    function mb_eregi($pattern, $string, ?array &$matches = null)
+    function mb_eregi($pattern, $string, &$matches = null)
     {
         return p\MbEreg::match($pattern, $string, null, true, $matches);
     }
